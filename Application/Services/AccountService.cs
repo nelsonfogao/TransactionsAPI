@@ -66,24 +66,24 @@ namespace Application.Services
             };
         }
 
-        public async Task<AccountDto> CreateAccountAsync(CreateAccountDto nameAccount)
+        public async Task<AccountDto> CreateAccountAsync(CreateAccountDto account)
         {
-            var account = await _accountRepository.CreateAccountAsync(new Account()
+            var newAccount = await _accountRepository.CreateAccountAsync(new Account()
             {
-                AccountId = new Guid(),
-                Name = nameAccount.Name,
+                AccountId = Guid.NewGuid(),
+                Name = account.Name,
                 AvailableLimit = MIN_LIMIT,
                 ActiveCard = true,
                 Transactions = new List<Transaction>()
             });
             return new AccountDto()
             {
-                AccountId = account.AccountId,
-                Name = account.Name,
-                AvailableLimit = account.AvailableLimit,
-                ActiveCard = account.ActiveCard,
-                Transactions = account.Transactions != null ?
-                account.Transactions.Select(x => new TransactionDto()
+                AccountId = newAccount.AccountId,
+                Name = newAccount.Name,
+                AvailableLimit = newAccount.AvailableLimit,
+                ActiveCard = newAccount.ActiveCard,
+                Transactions = newAccount.Transactions != null ?
+                newAccount.Transactions.Select(x => new TransactionDto()
                 {
                     TransactionId = x.TransactionId,
                     AccountId = x.AccountId,

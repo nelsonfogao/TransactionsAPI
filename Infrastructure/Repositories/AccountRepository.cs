@@ -37,14 +37,9 @@ namespace Infrastructure.Repositories
             return result;
         }
 
-        public async Task UpdateCardStatusAsync(Account accountOld)
+        public async Task UpdateCardStatusAsync(Account account)
         {
-            _context.Accounts.Update(accountOld);
-            _context.SaveChanges();
-        }
-        public async Task UpdateCardLimitAsync(Account accountOld)
-        {
-            _context.Accounts.Update(accountOld);
+            _context.Accounts.Update(account);
             _context.SaveChanges();
         }
         

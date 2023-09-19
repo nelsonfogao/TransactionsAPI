@@ -29,7 +29,7 @@ namespace Application.Services
                 return Util.CompraNegada();
             var transactionDto = new TransactionDto
             {
-                TransactionId = new Guid(),
+                TransactionId = Guid.NewGuid(),
                 AccountId = accountId,
                 SellerId = sellerId,
                 Value = value,
@@ -40,7 +40,7 @@ namespace Application.Services
                 return Util.CompraComAltaFrequencia();
             if (Util.CompraAprovada() != await CheckDuplicatedTransactionAsync(transactionDto))
                 return Util.CompraDuplicada();
-            var transaction = await _transactionRepository.CreateTransactionAsync(new Transaction()
+            await _transactionRepository.CreateTransactionAsync(new Transaction()
             {
                 TransactionId = transactionDto.TransactionId,
                 AccountId = transactionDto.AccountId,
