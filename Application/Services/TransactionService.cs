@@ -72,7 +72,8 @@ namespace Application.Services
             if(transactions == null)
                 return Util.CompraAprovada();
             var duplicada = transactions.LastOrDefault();
-            var duplicadas =  (Math.Abs((duplicada.Timestamp - transaction.Timestamp).TotalMinutes) <= 2) && (duplicada.Value == transaction.Value) && (duplicada.AccountId == transaction.AccountId);
+            if(duplicada != null)
+                var duplicadas = (duplicada.AccountId == transaction.AccountId) && (duplicada.Value == transaction.Value) && (Math.Abs((duplicada.Timestamp - transaction.Timestamp).TotalMinutes) <= 2);
             if (duplicadas)
                 return Util.CompraDuplicada();
             return Util.CompraAprovada();
@@ -82,7 +83,8 @@ namespace Application.Services
         {
             var transactions = await _transactionRepository.GetTransactionsAsync();
             var matchingTransactions = transactions
-           .Where(x => Math.Abs((x.Timestamp - transaction.Timestamp).TotalMinutes) <= 2).Where(x => x.AccountId == transaction.AccountId)
+              .Where(x => x.AccountId == transaction.AccountId)
+           .Where(x => Math.Abs((x.Timestamp - transaction.Timestamp).TotalMinutes) <= 2)
            .ToList();
             if (matchingTransactions.Count > 1)
                 return Util.CompraComAltaFrequencia();
