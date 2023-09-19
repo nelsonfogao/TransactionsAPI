@@ -71,7 +71,8 @@ namespace Application.Services
             var transactions = await _transactionRepository.GetTransactionsAsync();
             if(transactions == null)
                 return Util.CompraAprovada();
-            var duplicadas =  (Math.Abs((transactions.LastOrDefault().Timestamp - transaction.Timestamp).TotalMinutes) <= 2) && (transactions.LastOrDefault().Value == transaction.Value) && (transactions.LastOrDefault().AccountId == transaction.AccountId);
+            var duplicada = transactions.LastOrDefault();
+            var duplicadas =  (Math.Abs((duplicada.Timestamp - transaction.Timestamp).TotalMinutes) <= 2) && (duplicada.Value == transaction.Value) && (duplicada == transaction.AccountId);
             if (duplicadas)
                 return Util.CompraDuplicada();
             return Util.CompraAprovada();
