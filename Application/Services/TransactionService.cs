@@ -69,6 +69,8 @@ namespace Application.Services
         public async Task<string> CheckDuplicatedTransactionAsync(TransactionDto transaction)
         {
             var transactions = await _transactionRepository.GetTransactionsAsync();
+            if(transactions == null)
+                return Util.CompraAprovada();
             var duplicadas =  (Math.Abs((transactions.LastOrDefault().Timestamp - transaction.Timestamp).TotalMinutes) <= 2) && (transactions.LastOrDefault().Value == transaction.Value) && (transactions.LastOrDefault().AccountId == transaction.AccountId);
             if (duplicadas)
                 return Util.CompraDuplicada();
