@@ -72,9 +72,9 @@ namespace Application.Services
             if(transactions == null)
                 return Util.CompraAprovada();
             var duplicada = transactions.LastOrDefault();
-            if(duplicada != null)
-                if (duplicada.AccountId == transaction.AccountId) && (duplicada.Value == transaction.Value) && (Math.Abs((duplicada.Timestamp - transaction.Timestamp).TotalMinutes) <= 2);
-                    return Util.CompraDuplicada();
+            var teste = (duplicada.AccountId == transaction.AccountId) && (duplicada.Value == transaction.Value) && (Math.Abs((duplicada.Timestamp - transaction.Timestamp).TotalMinutes) <= 2);
+            if (teste)
+                return Util.CompraDuplicada();
             return Util.CompraAprovada();
         }
 
