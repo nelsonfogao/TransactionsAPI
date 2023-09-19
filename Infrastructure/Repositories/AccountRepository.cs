@@ -42,5 +42,11 @@ namespace Infrastructure.Repositories
             _context.Accounts.Update(accountOld);
             _context.SaveChanges();
         }
+        public async Task UpdateCardLimitAsync(Account accountOld)
+        {
+            _context.Accounts.Update(accountOld);
+            _context.SaveChanges();
+        }
+        
     }
 }

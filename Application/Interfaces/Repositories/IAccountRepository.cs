@@ -12,6 +12,7 @@ namespace Application.Interfaces.Repositories
         Task<IEnumerable<Account>> GetAccountsAsync();
         Task<Account> GetAccountByIdAsync(Guid id);
         Task<Account> CreateAccountAsync(Account account);
-        Task UpdateCardStatusAsync(Account account); 
+        Task UpdateCardStatusAsync(Account account);
+        Task UpdateCardLimitAsync(Account accountOld);
     }
 }

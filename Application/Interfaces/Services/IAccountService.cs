@@ -17,6 +17,6 @@ namespace Application.Interfaces.Services
         Task<string> CheckNameAsync(Guid id);
         Task<bool> IsCardActiveAsync(Guid id);
         Task UpdateCardStatusAsync(Guid id);
-        Task<IEnumerable<TransactionDto>> GettransactionsAsync(Guid id);
+        Task<IEnumerable<TransactionDto>> GetTransactionsAsync(Guid id);
     }
 }

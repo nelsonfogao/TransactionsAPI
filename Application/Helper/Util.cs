@@ -14,7 +14,15 @@ namespace Application.Helper
         }
         public static string CompraNegada()
         {
-            return "Limite Insuficiente";
+            return "Compra Negada";
+        }
+        public static string CompraDuplicada()
+        {
+            return "Compra Duplicada";
+        }
+        public static string CompraComAltaFrequencia()
+        {
+            return "Alta Frequencia e pequeno intervalo";
         }
     }
 }

@@ -133,7 +133,7 @@ namespace Application.Services
                 }).ToList() : new List<Transaction>()
             });
         }
-        public async Task<IEnumerable<TransactionDto>> GettransactionsAsync(Guid id)
+        public async Task<IEnumerable<TransactionDto>> GetTransactionsAsync(Guid id)
         {
             var account = await _accountRepository.GetAccountByIdAsync(id);
 
