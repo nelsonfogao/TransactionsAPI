@@ -21,7 +21,7 @@ namespace Infrastructure.Repositories
         public async Task<string> CreateTransactionAsync(Transaction transaction)
         {
             await _context.Transactions.AddAsync(transaction);
-            _context.SaveChanges();
+            await _context.SaveChanges();
             return transaction.TransactionStatus;
         }
 
