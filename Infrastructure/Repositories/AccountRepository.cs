@@ -32,15 +32,15 @@ namespace Infrastructure.Repositories
         public async Task<Account> CreateAccountAsync(Account account)
         {
              await _context.Accounts.AddAsync(account);
-             await _context.SaveChanges();
+             _context.SaveChanges();
             var result = await GetAccountByIdAsync(account.AccountId);
             return result;
         }
 
         public async Task UpdateCardStatusAsync(Account account)
         {
-            await _context.Accounts.Update(account);
-            await _context.SaveChanges();
+            _context.Accounts.Update(account);
+            _context.SaveChanges();
         }
         
     }
